@@ -20,9 +20,20 @@ const firstHalfHtml = `
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <style>
+
+    h1 {
+        background-color: #993399;
+        color: #ffffff;
+    }
+
+    </style>
+
 </head>
 
 <body>
+
+<h1 class="text-center">My Team</h1>
     <div class="container">
         <div class="row">
 
@@ -157,9 +168,9 @@ function writeFile(){
                         </div>
 
                         <div class='card-body'>
-                           ${allEmployee[index].getId()}
-                           ${allEmployee[index].getEmail()}
-                           ${allEmployee[index].getOfficeNumber()}
+                        <h5 class="card-title">ID: ${allEmployee[index].getId()}</h5>  
+                        <h5 class="card-title">Email: ${allEmployee[index].getEmail()}</h5>
+                        <h5 class="card-title">Office Number: ${allEmployee[index].getOfficeNumber()}</h5>
 
                         </div>
                       </div>
