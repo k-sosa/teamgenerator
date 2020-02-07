@@ -78,9 +78,9 @@ function menu() {
             case "Add Intern":
                 addIntern()
                 break
-                case "Quit":
-                    writeFile()
-                    break
+            case "Quit":
+                writeFile()
+                break
         }
     })
 }
@@ -102,12 +102,12 @@ function addManager() {
         name: "employeeNumber"
     }
 
-    ]).then(function(input){
-      
-         let manager = new Manager(input.employeeName, id++, input.employeeEmail, input.employeeNumber)
-         allEmployee.push(manager)
-         console.log(allEmployee)
-         menu()
+    ]).then(function (input) {
+
+        let manager = new Manager(input.employeeName, id++, input.employeeEmail, input.employeeNumber)
+        allEmployee.push(manager)
+        console.log(allEmployee)
+        menu()
     })
 
 }
@@ -115,26 +115,26 @@ function addManager() {
 function addEngineer() {
     inquirer.prompt([
         {
-        type: "input",
-        message: "What is your name?",
-        name: "engineerName"
-    },
-    {
-        type: "input",
-        message: "What is your email?",
-        name: "engineerEmail"
-    },
-    {
-        type: "input",
-        message: "what is yout github username?",
-        name: "engineerGithub"
-    }
-]).then(function(input){
-    let engineer = new Engineer(input.engineerName, id++, input.engineerEmail, input.engineerGithub)
-    allEmployee.push(engineer)
-    console.log(allEmployee)
-    menu()
-})
+            type: "input",
+            message: "What is your name?",
+            name: "engineerName"
+        },
+        {
+            type: "input",
+            message: "What is your email?",
+            name: "engineerEmail"
+        },
+        {
+            type: "input",
+            message: "what is yout github username?",
+            name: "engineerGithub"
+        }
+    ]).then(function (input) {
+        let engineer = new Engineer(input.engineerName, id++, input.engineerEmail, input.engineerGithub)
+        allEmployee.push(engineer)
+        console.log(allEmployee)
+        menu()
+    })
 
 }
 
@@ -155,7 +155,7 @@ function addIntern() {
             message: "what is your school name?",
             name: "internSchool"
         }
-    ]).then(function(input){
+    ]).then(function (input) {
         let intern = new Intern(input.internName, id++, input.internEmail, input.internSchool)
         allEmployee.push(intern)
         console.log(allEmployee)
@@ -164,11 +164,11 @@ function addIntern() {
 
 }
 
-function writeFile(){
-      for (let index = 0; index < allEmployee.length; index++) {
-          
-           if (allEmployee[index].getRole()==="Manager"){
-               card += `
+function writeFile() {
+    for (let index = 0; index < allEmployee.length; index++) {
+
+        if (allEmployee[index].getRole() === "Manager") {
+            card += `
                       <div class='card'>
                         <div class='card-header'>
                                <p class="text-center">Name: ${allEmployee[index].getName()}</p>
@@ -183,18 +183,59 @@ function writeFile(){
                         </div>
                       </div>
                `
-           }
-          
-      }
+        } else if (allEmployee[index].getRole() === "Intern") {
+            card += `
+               <div class='card'>
+               <div class='card-header'>
+                      <p class="text-center">Name: ${allEmployee[index].getName()}</p>
+                      <p class="text-center">Role: ${allEmployee[index].getRole()}</p>
+               </div>
 
-      fs.writeFile("./output/index.html",firstHalfHtml+card+lastHtml,function(err){
-         if(err)
-           {
-               console.log(err)
-           } 
-           
-           console.log("success")
-      })
+               <div class='card-body'>
+               <h5 class="card-title">ID: ${allEmployee[index].getId()}</h5>  
+               <h5 class="card-title">Email: ${allEmployee[index].getEmail()}</h5>
+               <h5 class="card-title">Office Number: ${allEmployee[index].getSchool()}</h5>
+
+               </div>
+             </div>
+               
+               
+               
+               
+            `
+        } else if (allEmployee[index].getRole() === "Engineer") {
+            card += `
+            <div class='card'>
+               <div class='card-header'>
+                      <p class="text-center">Name: ${allEmployee[index].getName()}</p>
+                      <p class="text-center">Role: ${allEmployee[index].getRole()}</p>
+               </div>
+
+               <div class='card-body'>
+               <h5 class="card-title">ID: ${allEmployee[index].getId()}</h5>  
+               <h5 class="card-title">Email: ${allEmployee[index].getEmail()}</h5>
+               <h5 class="card-title">Office Number: ${allEmployee[index].getGithub()}</h5>
+
+               </div>
+             </div>
+            
+            
+            
+            
+            `
+
+
+        }
+
+    }
+
+    fs.writeFile("./output/index.html", firstHalfHtml + card + lastHtml, function (err) {
+        if (err) {
+            console.log(err)
+        }
+
+        console.log("success")
+    })
 }
 
 
