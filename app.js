@@ -22,9 +22,17 @@ const firstHalfHtml = `
 
     <style>
 
+    body {
+        background-color: #ffe6ff;
+    }
+
     h1 {
         background-color: #993399;
         color: #ffffff;
+    }
+
+    p {
+        color: #993399;
     }
 
     </style>
@@ -163,8 +171,8 @@ function writeFile(){
                card += `
                       <div class='card'>
                         <div class='card-header'>
-                                ${allEmployee[index].getName()}
-                                ${allEmployee[index].getRole()}
+                               <p class="text-center">Name: ${allEmployee[index].getName()}</p>
+                               <p class="text-center">Role: ${allEmployee[index].getRole()}</p>
                         </div>
 
                         <div class='card-body'>
